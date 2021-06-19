@@ -1,0 +1,6 @@
+[submodule ".vim/pack/tpope/start"]
+	path = .vim/pack/tpope/start
+	url = https://tpope.io/vim/sleuth.git
+[submodule ".vim/bundle/Vundle.vim"]
+	path = .vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim

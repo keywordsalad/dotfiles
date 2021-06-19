@@ -1,0 +1,50 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+undo_backspace: false
+backspace_limit: 5
+secure_input_notification: false
+
+global_vars:
+  - name: "date"
+    type: "date"
+    params:
+      format: "%m/%d/%Y"
+
+  - name: "time"
+    type: "date"
+    params:
+      format: "%I:%M %P"
+
+  - name: "datestamp"
+    type: "date"
+    params:
+      format: "%Y-%m-%d"
+
+  - name: "timestamp"
+    type: "date"
+    params:
+      format: "%FT%T%z"
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Dates
+  - trigger: ":date:"
+    replace: "{{date}}"
+
+  - trigger: ":time:"
+    replace: "{{time}}"
+
+  - trigger: ":datetime:"
+    replace: "{{date}} at {{time}}"
+
+  - trigger: ":datestamp:"
+    replace: "{{datestamp}}"
+
+  - trigger: ":timestamp:"
+    replace: "{{timestamp}}"
+

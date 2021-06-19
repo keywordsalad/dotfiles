@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+DOTFILES_REPO=$(git config --get remote.origin.url)
+
+local dotfiles_root="$(cd "$(dirname $0)/../../" && pwd)"
+
+sync_repo "$DOTFILES_REPO" "$dotfiles_root" "pull"

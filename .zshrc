@@ -1,0 +1,133 @@
+# uncomment to profile zsh
+#zmodload zsh/zprof
+
+zsh_prof() {
+  env ZSH_PROF= zsh -ic zprof
+}
+
+zsh_time() {
+  /usr/bin/time zsh -i -c exit
+}
+
+export LANG=en_US.UTF-8
+export EDITOR=vim
+
+prepend_path() {
+  if [[ "$PATH" != *"$1"* ]]; then
+    export PATH="$1:$PATH"
+  fi
+}
+
+prepend_path "$HOME/.local/bin"
+prepend_path "$HOME/.cargo/bin"
+prepend_path "$HOME/bin"
+prepend_path "$HOME/.dotfiles/bin"
+prepend_path "$HOME/local/bin"
+
+# General ZSH options
+setopt HIST_FIND_NO_DUPS
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+#COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(history-substring-search git)
+
+# This is disabled because handle_completion_insecurities() is hella slow
+ZSH_DISABLE_COMPFIX=true
+
+# load Oh My Zsh
+source "$ZSH/oh-my-zsh.sh"
+
+# alias vim to nvim if installed
+if type nvim > /dev/null; then
+  alias vim=nvim
+fi
+
+# load helper commands/shortcuts
+source "$HOME/.dotfiles/lib/shortcuts.sh"
+
+local local_shortcuts="$HOME/local/lib/shortcuts.sh"
+if [ -f "$local_shortcuts" ]; then
+  source "$local_shortcuts"
+fi
+unset local_shortcuts
+
+# load local profile if present
+local local_profile="$HOME/local/local_profile.sh"
+if [ -f "$local_profile" ]; then
+  source "$local_profile"
+fi
+unset local_profile
+
+# finally load oh my zsh
+source $ZSH/oh-my-zsh.sh
+
+# Synchronize specific local git repos with their origin
+setup_repo_syncs() {
+  setup_repo_sync "$HOME/.dotfiles/bin/sync_main_repos"
+  setup_repo_sync "$HOME/local/bin/sync_local_repos"
+}

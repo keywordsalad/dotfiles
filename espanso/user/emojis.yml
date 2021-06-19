@@ -1,0 +1,19 @@
+name: "emojis"
+parent: "default"
+
+matches:
+  - trigger: ":thumbsup:"
+    replace: "👍"
+
+  - trigger: ":approved:"
+    replace: "✅"
+
+  - trigger: ":tada:"
+    replace: "🎉"
+
+  - trigger: ":looking:"
+    replace: "👀"
+
+  - trigger: ":dunno:"
+    replace: "¯\\_(ツ)_/¯"
+

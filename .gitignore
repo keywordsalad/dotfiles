@@ -1,0 +1,46 @@
+# ignore local dotfiles folder
+.dotfiles/local/*
+!.dotfiles/local/.gitkeep
+
+# ignore zsh files
+.zsh/data
+.zsh/*local
+.zsh/*.swp
+
+# ignore vim files
+.vim/.netrwhist
+
+# keep Vundle, ignore bundles
+.vim/bundle/**
+!.vim/bundle/Vundle.vim
+!.vim/bundle/Vundle.vim/**
+
+# ignore neovim files
+.dotfiles/etc/nvim/.netrwhist
+
+# this was ignored previously
+.dotfiles/etc/deluge
+
+# ignore local dotfiles
+.dotfiles/local
+
+# ignore most of .config
+.config/*
+
+# keep custom .config contents
+!.config/nvim
+!.config/nvim/**/*
+
+# ignore CMake local config
+.dotfiles/share/CMakeTools/log.txt
+.dotfiles/share/CMakeTools/cmake-tools-kits.json
+
+# ignore gimp recently used file list
+.dotfiles/share/recently-used.xbel
+
+__pycache__
+*.pyc
+project/
+target/
+.vscode/
+.bsp/

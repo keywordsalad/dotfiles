@@ -1,0 +1,9 @@
+name: "obsidian"
+parent: "default"
+filter_title: "Obsidian"
+
+matches:
+  # note macros
+  - trigger: ":log:"
+    replace: "### {{time}}"
+

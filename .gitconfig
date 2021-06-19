@@ -1,0 +1,53 @@
+# This is Git's per-user configuration file.
+[alias]
+    pushf = push --force-with-lease
+    s = switch
+    sc = switch -c
+    br = branch
+    curb = branch --show-current
+    brdel = branch -D
+    st = status
+    co = checkout
+    c = commit
+
+    pushnew = !git push -u origin $(git curb)
+    reset-author = commit --amend --reset-author
+    set-author = !git-set-author() { git config user.name $1 && git config user.email $2 }; git-set-author
+
+    prune-remote = !git branch -vv | grep ': gone]'|  grep -v '*' | awk '{ print $1; }' | grep . | xargs git branch -D
+
+    wip = !wipstamp=$(date +"%Y%m%d-%H%M%S") && git add . && git sc "WIP-$wipstamp" && git commit --allow-empty -m "WIP-$wipstamp" && git pushnew
+
+    # history graph
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+    # List commits in short form, with colors and branch/tag annotations
+    lsc = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+
+    # List commits showing changed files
+    lsf = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+    # List oneline commits showing dates
+    lsd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    # list branches sorted by last modified
+    lsb = !git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
+	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
+
+[diff]
+    algorithm = patience
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+
+[column]
+    ui = auto
+
+[pull]
+	rebase = false

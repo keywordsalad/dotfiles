@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "-v" ] || [ "$1" == "--verbose" ]; then
+    shift
+    find . -type f -print -exec touch {} +
+else
+    find . -type f -exec touch {} +
+fi
+

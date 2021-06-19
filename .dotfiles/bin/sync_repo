@@ -1,0 +1,49 @@
+#!/usr/bin/env zsh
+
+# The url to the remote git repo
+REPO_URL="$1"
+
+# The local path to clone the repo into
+REPO_LOCAL_PATH="$2"
+
+# "push" allows local changes to be periodically commit and push to origin (great for notes)
+# "pull" allows remote changes to be pulled in locally, pushing is performed manually (great for actual code and dotfiles)
+# "pull" is the default value
+PUSH_PULL="${3:-pull}"
+
+if [ -z "$REPO_URL" ]; then
+    echo "No repository url given!"
+    exit 1
+fi
+
+if [ -z "$REPO_LOCAL_PATH" ]; then
+    echo "No repository local path given!"
+    exit 1
+fi
+
+if [ "$PUSH_PULL" != "push" ] && [ "$PUSH_PULL" != "pull" ]; then
+    echo "Invalid push/pull provided: $PUSH_PULL"
+    exit 1
+fi
+
+if [ ! -d "$REPO_LOCAL_PATH" ]; then
+    mkdir -p "$REPO_LOCAL_PATH"
+    git clone -q "$REPO_URL" "$REPO_LOCAL_PATH"
+fi
+
+pushd "$REPO_LOCAL_PATH"
+
+# "pull" happens no matter what to keep things synchronized
+git pull
+
+# "push" if configured to do so
+if [ "$PUSH_PULL" = "push" ]; then
+    CHANGES_EXIST="$(git status --porcelain | wc -l)"
+    if [ "$CHANGES_EXIST" -gt 0 ]; then
+        git add .
+        git commit -q -m "Last Sync: $(date)"
+        git push -q
+    fi
+fi
+
+popd

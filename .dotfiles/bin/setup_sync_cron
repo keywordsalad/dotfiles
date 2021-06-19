@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+
+# Sets up a cron entry for synchronizing repos specified in
+# the given script, if the script exists
+
+DIRNAME="$(cd "$(dirname "$0")" && pwd -P)"
+LIBDIR="$(cd "$DIRNAME/../lib" && pwd -P)"
+
+source "$LIBDIR/shell_colors.sh"
+
+if (echo "$@" | grep -qRnw "\--help") || (echo "$@" | grep -qRnw "\-h"); then
+    print "$(bold "USAGE"):"
+    print "    $(basename "$0" | hl) $(req_arg "sync_script_path") [$(opt_arg "sync_interval=10")]"
+    print
+    print "    $(req_arg "sync_script_path")     Required path to the $(hl "sync script")"
+    print "    $(opt_arg "sync_interval")        Optional sync interval in minutes, default 10"
+    print
+    print "See $(hl "${DIRNAME}/sync_main_repos")"
+    print "for an example $(hl "sync script")"
+    print
+    exit
+fi
+
+SYNC_REPO_SCRIPT="$1"
+SYNC_MINUTES="${2:-60}"
+
+if [ -z "$SYNC_REPO_SCRIPT" ]; then
+    print "${BOLD}${FG_RED}ERROR: No path to repo sync script given!${FG_DEFAULT}${NORMAL}"
+    exit 1
+fi
+
+if [ ! -f "$SYNC_REPO_SCRIPT" ]; then
+    print "$(err "ERROR"): Repo sync file $(hl "$SYNC_REPO_SCRIPT") not found!"
+    exit 1
+fi
+
+CRON_ENTRY="*/$SYNC_MINUTES * * * * /bin/zsh -c 'source $HOME/.zshrc > /dev/null 2>&1; '$SYNC_REPO_SCRIPT' > /dev/null 2>&1'"
+OTHER_ENTRIES="$(crontab -l | grep -v "$SYNC_REPO_SCRIPT")"
+
+print "cronjob added for $(hl "$SYNC_REPO_SCRIPT")"
+
+(echo "$OTHER_ENTRIES" ; echo "$CRON_ENTRY") | grep -v -e '^$' | sort - | uniq - | crontab - 2>&1

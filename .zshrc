@@ -107,15 +107,6 @@ if type nvim > /dev/null; then
   alias vim=nvim
 fi
 
-# load helper commands/shortcuts
-source "$HOME/.dotfiles/lib/shortcuts.sh"
-
-local local_shortcuts="$HOME/local/lib/shortcuts.sh"
-if [ -f "$local_shortcuts" ]; then
-  source "$local_shortcuts"
-fi
-unset local_shortcuts
-
 # load local profile if present
 local local_profile="$HOME/local/local_profile.sh"
 if [ -f "$local_profile" ]; then

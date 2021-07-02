@@ -2,8 +2,8 @@
 
 if [ "$1" == "-v" ] || [ "$1" == "--verbose" ]; then
     shift
-    find . -type f -print -exec touch {} +
+    find $2 -type f -print -exec touch {} +
 else
-    find . -type f -exec touch {} +
+    find $1 -type f -exec touch {} +
 fi
 

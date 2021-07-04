@@ -3,16 +3,9 @@
     pushf = push --force-with-lease
     s = switch
     sc = switch -c
-    br = branch
-    curb = branch --show-current
-    brdel = branch -D
     st = status
     co = checkout
     c = commit
-
-    pushnew = !git push -u origin $(git curb)
-    reset-author = commit --amend --reset-author
-    set-author = !git-set-author() { git config user.name $1 && git config user.email $2 }; git-set-author
 
     prune-remote = !git branch -vv | grep ': gone]'|  grep -v '*' | awk '{ print $1; }' | grep . | xargs git branch -D
 
@@ -29,11 +22,15 @@
 
     # List oneline commits showing dates
     lsd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
     # list branches sorted by last modified
     lsb = !git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
-	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
+
+    # squash everything into a single, initial commit
+    fresh-start = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
 [diff]
+    # better diffing around brackets and indents
     algorithm = patience
 
 [core]
@@ -50,4 +47,8 @@
     ui = auto
 
 [pull]
-	rebase = false
+    rebase = false
+
+[user]
+    email = keywordsalad@thisfieldwas.green
+    name = Logan McGrath

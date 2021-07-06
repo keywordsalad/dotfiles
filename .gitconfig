@@ -52,3 +52,4 @@
 [user]
 	email = keywordsalad@thisfieldwas.green
 	name = keywordsalad
+	useConfigOnly = true

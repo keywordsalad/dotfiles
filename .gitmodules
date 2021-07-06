@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim
+[submodule ".dotfiles/opt/git-filter-repo"]
+	path = .dotfiles/opt/git-filter-repo
+	url = git@github.com:newren/git-filter-repo.git

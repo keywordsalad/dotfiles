@@ -74,6 +74,7 @@ set sts=4 " softtabstop
 set sw=4  " shiftwidth
 set expandtab
 
+autocmd FileType gitconfig setlocal noexpandtab ts=4 sts=4 sw=4
 autocmd FileType hs   setlocal   expandtab ts=2 sts=2 sw=2
 autocmd FileType rb   setlocal   expandtab ts=2 sts=2 sw=2
 autocmd FileType py   setlocal   expandtab ts=4 sts=4 sw=4

@@ -1,6 +1,7 @@
 # This is Git's per-user configuration file.
 [alias]
-	pushf = push --force-with-lease
+	pf = push --force-with-lease
+	p = push
 	s = switch
 	sc = switch -c
 	st = status

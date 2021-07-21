@@ -1,7 +1,6 @@
 :set prompt "ghci> "
 :set +t
 
-:seti -XAutoDeriveTypeable
 :seti -XBangPatterns
 :seti -XBinaryLiterals
 :seti -XConstraintKinds
@@ -23,7 +22,6 @@
 :seti -XInstanceSigs
 :seti -XKindSignatures
 :seti -XLambdaCase
-:seti -XMonadFailDesugaring
 :seti -XMultiParamTypeClasses
 :seti -XMultiWayIf
 :seti -XNamedFieldPuns

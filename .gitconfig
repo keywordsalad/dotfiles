@@ -8,6 +8,9 @@
 	co = checkout
 	c = commit
 	m = merge
+	mr = merge --rebase
+	f = fetch
+	fa = fetch --all
 
 	prune-remote = !git branch -vv | grep ': gone]'|  grep -v '*' | awk '{ print $1; }' | grep . | xargs git branch -D
 

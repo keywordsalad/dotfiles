@@ -69,25 +69,23 @@ Plugin 'ekalinin/Dockerfile.vim'
 
 :syntax on
 
-set ts=4  " tabstop
-set sts=4 " softtabstop
-set sw=4  " shiftwidth
+set ignorecase
+set hlsearch
+set ruler
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4 " indent/dedent by spaces
 set expandtab
 
 autocmd FileType gitconfig setlocal noexpandtab ts=4 sts=4 sw=4
-autocmd FileType hs   setlocal   expandtab ts=2 sts=2 sw=2
-autocmd FileType rb   setlocal   expandtab ts=2 sts=2 sw=2
-autocmd FileType py   setlocal   expandtab ts=4 sts=4 sw=4
-autocmd FileType go   setlocal noexpandtab ts=4 sts=4 sw=4
-autocmd FileType cpp  setlocal   expandtab ts=2 sts=2 sw=2
-autocmd FileType hpp  setlocal   expandtab ts=2 sts=2 sw=2
-autocmd FileType yaml setlocal   expandtab ts=2 sts=2 sw=2
-
-"set ignorecase
-"set smartcase
-set hlsearch
-
-set ruler
+autocmd FileType hs        setlocal   expandtab ts=2 sts=2 sw=2
+autocmd FileType rb        setlocal   expandtab ts=2 sts=2 sw=2
+autocmd FileType py        setlocal   expandtab ts=4 sts=4 sw=4
+autocmd FileType go        setlocal noexpandtab ts=4 sts=4 sw=4
+autocmd FileType cpp       setlocal   expandtab ts=2 sts=2 sw=2
+autocmd FileType hpp       setlocal   expandtab ts=2 sts=2 sw=2
+autocmd FileType yaml      setlocal   expandtab ts=2 sts=2 sw=2
 
 autocmd BufNewFile,BufRead Brewfile,*.Brewfile set syntax=ruby
 

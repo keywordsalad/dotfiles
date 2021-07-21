@@ -7,6 +7,7 @@
 	st = status
 	co = checkout
 	c = commit
+	m = merge
 
 	prune-remote = !git branch -vv | grep ': gone]'|  grep -v '*' | awk '{ print $1; }' | grep . | xargs git branch -D
 

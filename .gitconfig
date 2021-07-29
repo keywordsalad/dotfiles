@@ -58,3 +58,5 @@
 	email = keywordsalad@thisfieldwas.green
 	name = Logan McGrath
 	useConfigOnly = true
+[credential]
+	helper = store

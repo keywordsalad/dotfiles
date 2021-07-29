@@ -1,10 +1,9 @@
-
 .config/nvim
 .dotfiles
 .vim
-espanso,Library/Preferences/espanso
 .ghci
 .gitconfig
 .gitignore_global,.gitignore
 .vimrc
 .zshrc
+

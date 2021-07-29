@@ -22,7 +22,6 @@ prepend_path "$HOME/.local/bin"
 prepend_path "$HOME/.cargo/bin"
 prepend_path "$HOME/bin"
 prepend_path "$HOME/.dotfiles/bin"
-prepend_path "$HOME/local/bin"
 
 # General ZSH options
 setopt HIST_FIND_NO_DUPS
@@ -99,6 +98,9 @@ plugins=(history-substring-search git)
 # This is disabled because handle_completion_insecurities() is hella slow
 ZSH_DISABLE_COMPFIX=true
 
+# Make history substring search use fuzzy matching
+HISTORY_SUBSTRING_SEARCH_FUZZY=1
+
 # load Oh My Zsh
 source "$ZSH/oh-my-zsh.sh"
 
@@ -108,17 +110,9 @@ if type nvim > /dev/null; then
 fi
 
 # load local profile if present
-local local_profile="$HOME/local/local_profile.sh"
+local local_profile="$HOME/local/.zshrc"
 if [ -f "$local_profile" ]; then
   source "$local_profile"
 fi
 unset local_profile
 
-# finally load oh my zsh
-source $ZSH/oh-my-zsh.sh
-
-# Synchronize specific local git repos with their origin
-setup_repo_syncs() {
-  setup_repo_sync "$HOME/.dotfiles/bin/sync_main_repos"
-  setup_repo_sync "$HOME/local/bin/sync_local_repos"
-}

@@ -59,4 +59,6 @@
 	name = Logan McGrath
 	useConfigOnly = true
 [credential]
-	helper = store
+	helper = cache
+[credential "https://bitsof.thisfieldwas.green"]
+	username = keywordsalad

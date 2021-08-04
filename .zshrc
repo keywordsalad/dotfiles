@@ -18,6 +18,7 @@ prepend_path() {
   fi
 }
 
+prepend_path "/usr/local/sbin"
 prepend_path "$HOME/.local/bin"
 prepend_path "$HOME/.cargo/bin"
 prepend_path "$HOME/bin"
@@ -107,6 +108,16 @@ source "$ZSH/oh-my-zsh.sh"
 # alias vim to nvim if installed
 if type nvim > /dev/null; then
   alias vim=nvim
+fi
+
+if ! type "sbtenv" > /dev/null; then
+  prepend_path "$HOME/.sbtenv/bin"
+  eval "$(sbtenv init -)"
+fi
+
+if ! type "scalaenv" > /dev/null; then
+  prepend_path "$HOME/.scalaenv/bin"
+  eval "$(scalaenv init -)"
 fi
 
 # load local profile if present

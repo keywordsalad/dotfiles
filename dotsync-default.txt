@@ -6,4 +6,5 @@
 .gitignore_global,.gitignore
 .vimrc
 .zshrc
+.zsh-custom
 

@@ -7,3 +7,5 @@ espanso,Library/Preferences/espanso
 .gitignore_global,.gitignore
 .vimrc
 .zshrc
+.zsh-custom
+

@@ -110,12 +110,12 @@ if type nvim > /dev/null; then
   alias vim=nvim
 fi
 
-if ! type "sbtenv" > /dev/null; then
+if test "$(type -p "sbtenv" &>/dev/null)"; then
   prepend_path "$HOME/.sbtenv/bin"
   eval "$(sbtenv init -)"
 fi
 
-if ! type "scalaenv" > /dev/null; then
+if test "$(type -p "scalaenv" &>/dev/null)"; then
   prepend_path "$HOME/.scalaenv/bin"
   eval "$(scalaenv init -)"
 fi

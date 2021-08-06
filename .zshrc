@@ -51,6 +51,9 @@ unsetopt correct_all            # don't let zsh second-guess spelling
 export BLOCK_SIZE="'1"          # Add commas to file sizes
 ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&' # These "eat" the auto prior space after a tab complete
 
+# Fuzzy Finder base
+export FZF_BASE="/usr/local/opt/fzf"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -118,7 +121,7 @@ ZSH_CUSTOM="$HOME/.zsh-custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history-substring-search git timer)
+plugins=(history-substring-search git timer fzf)
 
 # This is disabled because handle_completion_insecurities() is hella slow
 ZSH_DISABLE_COMPFIX=true

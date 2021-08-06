@@ -59,7 +59,7 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'flazz/vim-colorschemes'
 "Plugin 'arcticicestudio/nord-vim'
 Plugin 'ekalinin/Dockerfile.vim'
-"Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf.vim'
 "Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'godlygeek/tabular'
 

@@ -45,7 +45,7 @@ try_sourcing() {
 
 setup_env_cmd() {
   for env_cmd in "$@"; do
-    if ! which "$env_cmd" &>/dev/null; then
+    if which "$env_cmd" &>/dev/null; then
       prepend_path "$HOME/.$env_cmd/bin"
       eval "$($env_cmd init -)"
     fi

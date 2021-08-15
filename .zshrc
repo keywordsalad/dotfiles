@@ -137,14 +137,19 @@ if type nvim > /dev/null; then
   alias vim=nvim
 fi
 
-if test "$(type -p "sbtenv" &>/dev/null)"; then
+if test $(which sbtenv); then
   prepend_path "$HOME/.sbtenv/bin"
   eval "$(sbtenv init -)"
 fi
 
-if test "$(type -p "scalaenv" &>/dev/null)"; then
+if test $(which scalaenv); then
   prepend_path "$HOME/.scalaenv/bin"
   eval "$(scalaenv init -)"
+fi
+
+if test $(which jenv); then
+  prepend_path "$HOME/.jenv/bin"
+  eval "$(jenv init -)"
 fi
 
 # load local profile if present

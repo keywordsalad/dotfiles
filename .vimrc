@@ -86,6 +86,7 @@ autocmd FileType go        setlocal noexpandtab ts=4 sts=4 sw=4
 autocmd FileType cpp       setlocal   expandtab ts=2 sts=2 sw=2
 autocmd FileType hpp       setlocal   expandtab ts=2 sts=2 sw=2
 autocmd FileType yaml      setlocal   expandtab ts=2 sts=2 sw=2
+autocmd FileType zsh       setlocal   expandtab ts=2 sts=2 sw=2
 
 autocmd BufNewFile,BufRead Brewfile,*.Brewfile set syntax=ruby
 

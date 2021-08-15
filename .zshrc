@@ -12,17 +12,58 @@ zsh_time() {
 export LANG=en_US.UTF-8
 export EDITOR=vim
 
-prepend_path() {
-  if [[ "$PATH" != *"$1"* ]]; then
-    export PATH="$1:$PATH"
-  fi
+path_size() {
+  echo ${#${(s/:/)PATH}}
 }
 
-prepend_path "/usr/local/sbin"
-prepend_path "$HOME/.local/bin"
-prepend_path "$HOME/.cargo/bin"
-prepend_path "$HOME/bin"
-prepend_path "$HOME/.dotfiles/bin"
+path_contains() {
+  local query_path=$1
+  local path_parts=(${(s/:/)PATH})
+  for path_part in $path_parts; do
+    if [[ "$path_part" == "$query_path" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+prepend_path() {
+  for add_path in "$@"; do
+    if ! path_contains "$add_path"; then
+      export PATH="$add_path:$PATH"
+    fi
+  done
+}
+
+try_sourcing() {
+  for source_this in "$@"; do
+    if [ -f "$source_this" ]; then
+      source "$source_this"
+    fi
+  done
+}
+
+setup_env_cmd() {
+  for env_cmd in "$@"; do
+    if ! which "$env_cmd" &>/dev/null; then
+      prepend_path "$HOME/.$env_cmd/bin"
+      eval "$($env_cmd init -)"
+    fi
+  done
+}
+
+setup_env_cmd \
+  scalaenv \
+  sbtenv \
+  jenv \
+  rbenv
+
+prepend_path \
+  "/usr/local/sbin" \
+  "$HOME/.local/bin" \
+  "$HOME/.cargo/bin" \
+  "$HOME/.dotfiles/bin" \
+  "$HOME/bin"
 
 # History options
 HISTSIZE=10000
@@ -137,25 +178,6 @@ if type nvim > /dev/null; then
   alias vim=nvim
 fi
 
-if test $(which sbtenv); then
-  prepend_path "$HOME/.sbtenv/bin"
-  eval "$(sbtenv init -)"
-fi
-
-if test $(which scalaenv); then
-  prepend_path "$HOME/.scalaenv/bin"
-  eval "$(scalaenv init -)"
-fi
-
-if test $(which jenv); then
-  prepend_path "$HOME/.jenv/bin"
-  eval "$(jenv init -)"
-fi
-
 # load local profile if present
-local local_profile="$HOME/local/.zshrc"
-if [ -f "$local_profile" ]; then
-  source "$local_profile"
-fi
-unset local_profile
+try_sourcing "$HOME/local/.zshrc"
 

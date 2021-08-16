@@ -178,6 +178,17 @@ if type nvim > /dev/null; then
   alias vim=nvim
 fi
 
+ws() {
+  workspace="$HOME/workspace/$1"
+  if [ -d "$workspace" ]; then
+    cd "$workspace"
+    return 0
+  else
+    echo "Workspace not found at $workspace"
+    return 1
+  fi
+}
+
 # load local profile if present
 try_sourcing "$HOME/local/.zshrc"
 

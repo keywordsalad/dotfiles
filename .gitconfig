@@ -36,7 +36,7 @@
 
 [diff]
 	# better diffing around brackets and indents
-	algorithm = patience
+	algorithm = histogram
 
 [core]
 	editor = vim

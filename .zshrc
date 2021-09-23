@@ -9,6 +9,9 @@ zsh_time() {
   /usr/bin/time zsh -i -c exit
 }
 
+# keep duplicates out of the path by keeping only the first occurrances
+export -U PATH="$PATH"
+
 export LANG=en_US.UTF-8
 export EDITOR=vim
 
@@ -27,14 +30,6 @@ path_contains() {
   return 1
 }
 
-prepend_path() {
-  for add_path in "$@"; do
-    if ! path_contains "$add_path"; then
-      export PATH="$add_path:$PATH"
-    fi
-  done
-}
-
 try_sourcing() {
   for source_this in "$@"; do
     if [ -f "$source_this" ]; then
@@ -46,7 +41,7 @@ try_sourcing() {
 setup_env_cmd() {
   for env_cmd in "$@"; do
     if which "$env_cmd" &>/dev/null; then
-      prepend_path "$HOME/.$env_cmd/bin"
+      PATH="$HOME/.$env_cmd/bin:$PATH"
       eval "$($env_cmd init -)"
     fi
   done

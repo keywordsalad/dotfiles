@@ -42,15 +42,15 @@ def create_link(link_file, source_file):
     print()
 
 if __name__ == '__main__':
-    def dotsync_path(filename):
-        return path.realpath(path.join('dotsyncs', filename))
+    def link_path(filename):
+        return path.realpath(path.join('links', filename))
 
-    dotsync_files = [dotsync_path(filename) for filename in sys.argv[1:]]
-    dotsync_files.insert(0, dotsync_path('default'))
+    link_files = [link_path(filename) for filename in sys.argv[1:]]
+    link_files.insert(0, link_path('default'))
 
     links = {}
-    for dotsync_file in dotsync_files:
-        with open(dotsync_file, 'r') as config_file:
+    for link_file in link_files:
+        with open(link_file, 'r') as config_file:
             links |= read_config_file(config_file)
 
     for link, source in links.items():

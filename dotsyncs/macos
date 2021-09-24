@@ -5,6 +5,7 @@ espanso,Library/Preferences/espanso
 .ghci
 .gitconfig
 .gitignore_global,.gitignore
+.ssh/default_config,.ssh/default_config
 .vimrc
 .zshrc
 .zsh-custom

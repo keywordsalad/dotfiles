@@ -17,7 +17,7 @@ def read_config_file(config_file):
         source_file_absolute = source_file_override if path.exists(source_file_override) else source_file_provided
         link_file_absolute = path.join(user_dir, link_file) if link_file else path.join(user_dir, source_file)
 
-        return [source_file_absolute, link_file_absolute]
+        return [link_file_absolute, source_file_absolute]
 
     link_pairs = []
     for line in config_file.readlines():
@@ -27,9 +27,9 @@ def read_config_file(config_file):
         pair = [e.strip() for e in line.split(',')]
         link_pairs.append(resolve_source_and_link(*pair))
 
-    return link_pairs
+    return dict(link_pairs)
 
-def create_link(source_file, link_file):
+def create_link(link_file, source_file):
     print(f'[info] Processing link {link_file} => {source_file}')
     if path.islink(link_file):
         print(f'[info] Skipping: already linked')
@@ -42,12 +42,18 @@ def create_link(source_file, link_file):
     print()
 
 if __name__ == '__main__':
-    dotsync_file = path.realpath(sys.argv[1] if len(sys.argv) > 1 else 'dotsync-default.txt')
-    print(f"Using config file at {dotsync_file}")
+    def dotsync_path(filename):
+        path.realpath(path.join('dotsyncs', filename))
 
-    if not path.exists(dotsync_file):
-        raise Exception(f"dotsync config file at {dotsync_file} does not exist!")
+    dotsync_files = [dotsync_path(filename) for filename in sys.argv[1:]
+    if not dotsync_files:
+        dotsync_files = [dotsync_path('default')]
 
-    with open(dotsync_file, 'r') as config_file:
-        for source, link in read_config_file(config_file):
-            create_link(source, link)
+    links = {}
+    for dotsync_file in dotsync_files:
+        with open(dotsync_files, 'r') as config_file:
+            links |= read_config_file(config_file)
+
+    for link, source in links:
+        create_link(link, source)
+

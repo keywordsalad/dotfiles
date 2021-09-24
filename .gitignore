@@ -24,13 +24,6 @@
 # ignore local dotfiles
 .dotfiles/local
 
-# ignore most of .config
-.config/*
-
-# keep custom .config contents
-!.config/nvim
-!.config/nvim/**/*
-
 # ignore CMake local config
 .dotfiles/share/CMakeTools/log.txt
 .dotfiles/share/CMakeTools/cmake-tools-kits.json

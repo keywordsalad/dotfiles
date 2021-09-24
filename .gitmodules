@@ -7,3 +7,6 @@
 [submodule ".dotfiles/opt/git-filter-repo"]
 	path = .dotfiles/opt/git-filter-repo
 	url = git@github.com:newren/git-filter-repo.git
+[submodule ".config/awesome/awesome-wm-widgets"]
+	path = .config/awesome/awesome-wm-widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets.git

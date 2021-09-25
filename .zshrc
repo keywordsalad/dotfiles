@@ -53,12 +53,11 @@ setup_env_cmd \
   jenv \
   rbenv
 
-prepend_path \
-  "/usr/local/sbin" \
-  "$HOME/.local/bin" \
-  "$HOME/.cargo/bin" \
-  "$HOME/.dotfiles/bin" \
-  "$HOME/bin"
+PATH="/usr/local/sbin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.dotfiles/bin:$PATH"
+PATH="$HOME/bin:$PATH"
 
 # History options
 HISTSIZE=10000

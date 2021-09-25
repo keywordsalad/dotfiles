@@ -117,8 +117,19 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+-- Create net_widgets
+local net_widgets = require("net_widgets")
+local net_wireless = net_widgets.wireless({
+    timeout = 10,
+    onclick = "iwdgui"
+})
+local net_wired = net_widgets.indicator({
+    timeout = 10,
+    interfaces = {"enp0s31f6"}
+})
+
 -- Create a battery arc widget
-batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")({
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")({
     arc_thickness = 3,
     show_current_level = true,
     timeout = 10,
@@ -231,6 +242,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
+            net_wireless,
+            net_wired,
             batteryarc_widget,
             mytextclock,
             s.mylayoutbox,

@@ -10,3 +10,9 @@
 [submodule ".config/awesome/awesome-wm-widgets"]
 	path = .config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
+[submodule ".config/awesome/awesome-copycats"]
+	path = .config/awesome/awesome-copycats
+	url = https://github.com/lcpz/awesome-copycats
+[submodule ".config/awesome/net_widgets"]
+	path = .config/awesome/net_widgets
+	url = https://github.com/pltanton/net_widgets.git

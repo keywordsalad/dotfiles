@@ -1,4 +1,6 @@
 .config/awesome
+.config/terminator
 .Xresources
+.Xresources.d
 .xinitrc
 

@@ -53,7 +53,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
+ui_scale = 2
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.useless_gap = 4 * ui_scale
+beautiful.border_width = 0
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
@@ -91,15 +94,15 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "Manual", terminal .. " -e man awesome" },
+   { "Edit Config", editor_cmd .. " " .. awesome.conffile },
+   { "Restart", awesome.restart },
+   { "Quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "Open Terminal", terminal }
                                   }
                         })
 
@@ -130,11 +133,11 @@ local net_wired = net_widgets.indicator({
 
 -- Create a battery arc widget
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")({
-    arc_thickness = 3,
+    arc_thickness = 2 * ui_scale,
     show_current_level = true,
     timeout = 10,
     font = beautiful.font,
-    size = 36,
+    size = 24 * ui_scale,
     warning_msg_title = "Battery is dangerously low!",
     warning_msg_text = "Your astronaut is a battery and there's almost no oxygen left in the tank! Get to some wall juice ASAP!"
 })

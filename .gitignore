@@ -37,3 +37,5 @@ project/
 target/
 .vscode/
 .bsp/
+.config/iterm2
+.config/qBittorrent

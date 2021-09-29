@@ -1,14 +1,16 @@
 # Dotfiles
 
-How to clone:
+Clone 'em like this:
 
 ```bash
-git clone --recurse-submodules ssh://git@bitsof.thisfieldwas.green:2222/keywordsalad/dotfiles.git
+git clone --recurse-submodules git@bitsof.thisfieldwas.green:keywordsalad/dotfiles.git
 ```
 
-Run dotsync with config file of choice:
+Link dotfiles with config settings of choice, list one or more:
 
 ```bash
-./dotsync dotsync-default.txt
+./dotfiles default macos
+./dotfiles default arch 
 ```
 
+The default config is implicit, but listed here for illustration :)

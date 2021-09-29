@@ -2,6 +2,7 @@
 [alias]
 	pf = push --force-with-lease
 	p = push
+	pu = !git push -u origin $(git branch --show-current)
 	s = switch
 	sc = switch -c
 	st = status

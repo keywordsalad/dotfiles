@@ -48,6 +48,10 @@ if __name__ == '__main__':
     link_files = [link_path(filename) for filename in sys.argv[1:]]
     link_files.insert(0, link_path('default'))
 
+    local_links = path.join(local_dir, 'links')
+    if path.isfile(local_links):
+        link_files.append(local_links)
+
     links = {}
     for link_file in link_files:
         with open(link_file, 'r') as config_file:

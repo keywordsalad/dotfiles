@@ -51,7 +51,8 @@ setup_env_cmd \
   scalaenv \
   sbtenv \
   jenv \
-  rbenv
+  rbenv \
+  nodenv
 
 PATH="/usr/local/sbin:$PATH"
 PATH="$HOME/.local/bin:$PATH"

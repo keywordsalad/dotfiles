@@ -5,6 +5,8 @@
 .gitconfig
 .gitignore_global,.gitignore
 .ssh/default_config,.ssh/default_config
+.tmux
+.tmux.conf
 .vimrc
 .zshrc
 .zsh-custom

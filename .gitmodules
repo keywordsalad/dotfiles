@@ -13,3 +13,6 @@
 [submodule ".config/awesome/net_widgets"]
 	path = .config/awesome/net_widgets
 	url = https://github.com/pltanton/net_widgets.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

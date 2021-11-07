@@ -15,6 +15,8 @@
 !.vim/bundle/Vundle.vim
 !.vim/bundle/Vundle.vim/**
 
+.tmux/plugins/
+
 # ignore neovim files
 .dotfiles/etc/nvim/.netrwhist
 

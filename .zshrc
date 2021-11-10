@@ -13,8 +13,8 @@ zsh_time() {
 export -U PATH="$PATH"
 
 export LANG=en_US.UTF-8
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 
 path_size() {
   echo ${#${(s/:/)PATH}}

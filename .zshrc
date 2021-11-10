@@ -14,6 +14,7 @@ export -U PATH="$PATH"
 
 export LANG=en_US.UTF-8
 export EDITOR=vim
+export VISUAL=vim
 
 path_size() {
   echo ${#${(s/:/)PATH}}

@@ -16,6 +16,7 @@
 !.vim/bundle/Vundle.vim/**
 
 .tmux/plugins/
+.tmux/resurrect/
 
 # ignore neovim files
 .dotfiles/etc/nvim/.netrwhist

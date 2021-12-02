@@ -53,6 +53,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'godlygeek/tabular'
+Plugin 'cespare/vim-toml'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

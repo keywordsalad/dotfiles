@@ -185,6 +185,9 @@ ws() {
   fi
 }
 
+# load personal env vars if present
+try_sourcing "$HOME/.ssh/personal.env"
+
 # load local profile if present
 try_sourcing "$HOME/local/.zshrc"
 

@@ -68,7 +68,7 @@ def dots(filenames):
         with open(dotsfile_path, 'r') as dotsfile:
             # Read the dotsfile and merge it into the links dictionary,
             # overriding any links that are already present.
-            links |= read_dotsfile(dotsfile)
+            links = dict(links, **read_dotsfile(dotsfile))
 
     for dst, src in links.items():
         create_link(dst, src)

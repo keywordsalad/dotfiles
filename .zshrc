@@ -197,3 +197,4 @@ fi
 # load local profile if present
 try_sourcing "$HOME/local/.zshrc"
 
+[ -f ~/.motd ] && cat ~/.motd

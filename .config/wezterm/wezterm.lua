@@ -4,6 +4,7 @@ return {
     default_prog = {"/bin/zsh", "-l", "-c", "tmux attach || tmux"},
     font = wezterm.font("JetBrains Mono"),
     color_scheme = "Overnight Slumber",
+    check_for_updates = false,
 
     cursor_blink_rate = 800,
     text_blink_rate = 800,

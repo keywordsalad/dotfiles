@@ -42,7 +42,7 @@ try_sourcing() {
 setup_env_cmd() {
   for env_cmd in "$@"; do
     if which "$env_cmd" &>/dev/null; then
-      PATH="$HOME/.$env_cmd/bin:$PATH"
+      export PATH="$HOME/.$env_cmd/bin:$PATH"
       eval "$($env_cmd init -)"
     fi
   done
@@ -55,11 +55,11 @@ setup_env_cmd \
   rbenv \
   nodenv
 
-PATH="/usr/local/sbin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
-PATH="$HOME/.cargo/bin:$PATH"
-PATH="$HOME/.dotfiles/bin:$PATH"
-PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # History options
 HISTSIZE=10000
@@ -187,6 +187,12 @@ ws() {
 
 # load personal env vars if present
 try_sourcing "$HOME/.ssh/personal.env"
+
+# add local bin if present
+LOCAL_BIN="$HOME/local/bin"
+if [ -d "$LOCAL_BIN" ]; then
+  export PATH="$LOCAL_BIN:$PATH"
+fi
 
 # load local profile if present
 try_sourcing "$HOME/local/.zshrc"

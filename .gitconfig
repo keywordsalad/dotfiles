@@ -55,10 +55,6 @@
 [pull]
 	rebase = false
 
-[user]
-	email = keywordsalad@thisfieldwas.green
-	name = Logan McGrath
-	useConfigOnly = true
 [credential]
 	helper = cache
 [credential "https://github.com"]

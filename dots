@@ -54,6 +54,7 @@ A dotsfile in this directory may be overridden wholesale by specifying one of
 the same name in the local directory.
 '''
 
+import os
 import sys
 from os import makedirs, path, symlink
 
@@ -61,7 +62,7 @@ user_dir = path.expanduser('~')
 local_dir = path.join(user_dir, 'local')
 dotfiles_dir = path.dirname(path.realpath(__file__))
 
-def dots(filenames):
+def dots(filenames, force_links = False):
     dotsfile_paths = resolve_default_dotsfile_paths() + [resolve_dotsfile_path(filename) for filename in filenames]
     links = {}
     for dotsfile_path in dotsfile_paths:
@@ -71,7 +72,7 @@ def dots(filenames):
             links = dict(links, **read_dotsfile(dotsfile))
 
     for dst, src in links.items():
-        create_link(dst, src)
+        create_link(dst, src, force_links)
 
 # Returns the path to the dotsfile with the given name. If the dotsfile exists
 # in the local directory, it is returned. Otherwise, the dotsfile in this
@@ -127,17 +128,26 @@ def resolve_src_dst(src, dst = None):
     # earlier.
     return [dst_absolute, src_absolute]
 
-def create_link(dst, src):
+def create_link(dst, src, force_links = False):
     print(f'[info] Processing link {dst} => {src}')
     if path.islink(dst):
-        print(f'[info] Skipping: already linked')
+        if force_links == True:
+            os.remove(dst)
+            create_link_unsafe(dst, src)
+        else:
+            print(f'[info] Skipping: already linked')
     elif path.exists(dst):
         print(f'[error] Skipping: file already exists')
     else:
-        print(f'[info] Linking')
-        makedirs(path.dirname(dst), exist_ok=True)
-        symlink(src, dst)
+        create_link_unsafe(dst, src)
     print()
 
+def create_link_unsafe(dst, src):
+    print('[info] Linking')
+    makedirs(path.dirname(dst), exist_ok=True)
+    symlink(src, dst)
+
 if __name__ == '__main__':
-    dots(sys.argv[1:])
+    force_links = os.getenv('FORCE_LINKS') is not None
+    print(f'FORCE LINKS IS {force_links}')
+    dots(sys.argv[1:], force_links)

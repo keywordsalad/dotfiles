@@ -57,12 +57,10 @@
 
 [credential]
 	helper = cache
-[credential "https://github.com"]
-	username = keywordsalad
-	email = keywordsalad@thisfieldwas.green
-[credential "https://bitsof.thisfieldwas.green"]
-	username = keywordsalad
-	email = logan.mcgrath@thisfieldwas.green
-[credential "https://code.corp.creditkarma.com"]
-	username = logan-mcgrath-ck
-	email = logan.mcgrath@creditkarma.com
+
+[includeIf "gitdir:~/workspace/"]
+	path = ~/workspace/.gitconfig-personal
+
+[includeIf "gitdir:~/work/"]
+	path = ~/work/.gitconfig-work
+

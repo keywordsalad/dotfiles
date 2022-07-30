@@ -1,0 +1,7 @@
+[commit]
+    gpgsign = true
+
+[user]
+    name = Logan McGrath
+    email = logan.mcgrath@thisfieldwas.green
+

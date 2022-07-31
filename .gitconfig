@@ -61,6 +61,6 @@
 [includeIf "gitdir:~/workspace/"]
 	path = ~/workspace/.gitconfig-personal
 
-[includeIf "gitdir:~/work/"]
-	path = ~/work/.gitconfig-work
+[includeIf "gitdir:~/work-workspace/"]
+	path = ~/work-workspace/.gitconfig-work
 

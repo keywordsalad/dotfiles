@@ -16,6 +16,9 @@ export LANG=en_US.UTF-8
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 
+# for gpg to work right
+export GPG_TTY=$(tty)
+
 path_size() {
   echo ${#${(s/:/)PATH}}
 }

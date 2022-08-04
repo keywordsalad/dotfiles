@@ -2,6 +2,7 @@
 .dotfiles
 .ghci
 .gitconfig
+.gitconfig-personal,workspace/.gitconfig-personal
 .gitignore_global,.gitignore
 .ssh/default_config,.ssh/default_config
 .tmux

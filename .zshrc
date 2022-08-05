@@ -182,10 +182,16 @@ ws() {
   if [ -d "$workspace" ]; then
     cd "$workspace"
     return 0
-  else
-    echo "Workspace not found at $workspace"
-    return 1
   fi
+
+  workspace="$HOME/work-workspace/$1"
+  if [ -d "$workspace" ]; then
+    cd "$workspace"
+    return 0
+  fi
+
+  echo "Workspace not found"
+  return 1
 }
 
 # load personal env vars if present
@@ -197,7 +203,3 @@ if [ -d "$LOCAL_BIN" ]; then
   export PATH="$LOCAL_BIN:$PATH"
 fi
 
-# load local profile if present
-try_sourcing "$HOME/local/.zshrc"
-
-[ -f ~/.motd ] && cat ~/.motd

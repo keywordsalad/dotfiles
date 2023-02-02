@@ -12,6 +12,7 @@
 :seti -XDeriveGeneric
 :seti -XDeriveTraversable
 :seti -XDoAndIfThenElse
+:seti -XDuplicateRecordFields
 :seti -XEmptyDataDecls
 :seti -XExistentialQuantification
 :seti -XFlexibleContexts
@@ -25,7 +26,9 @@
 :seti -XMultiParamTypeClasses
 :seti -XMultiWayIf
 :seti -XNamedFieldPuns
+:seti -XNoFieldSelectors
 :seti -XNoImplicitPrelude
+:seti -XOverloadedRecordDot
 :seti -XOverloadedStrings
 :seti -XPartialTypeSignatures
 :seti -XPatternGuards

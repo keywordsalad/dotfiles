@@ -56,7 +56,8 @@
 	rebase = false
 
 [credential]
-	helper = cache
+	helper = osxkeychain
+	helper = /usr/local/share/gcm-core/git-credential-manager
 
 [includeIf "gitdir:~/workspace/"]
 	path = ~/workspace/.gitconfig-personal
@@ -64,3 +65,5 @@
 [includeIf "gitdir:~/work-workspace/"]
 	path = ~/work-workspace/.gitconfig-work
 
+[credential "https://dev.azure.com"]
+	useHttpPath = true

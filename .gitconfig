@@ -65,5 +65,8 @@
 [includeIf "gitdir:~/work-workspace/"]
 	path = ~/work-workspace/.gitconfig-work
 
+[includeIf "gitdir:~/local"]
+	path = ~/local/.gitconfig-local
+
 [credential "https://dev.azure.com"]
 	useHttpPath = true

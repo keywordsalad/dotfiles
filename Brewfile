@@ -12,6 +12,7 @@ brew "gnupg"
 brew "make"
 brew "mas"
 brew "neovim"
+brew "pinentry-mac"
 brew "sqlite"
 brew "pipenv"
 brew "pyenv"
@@ -36,3 +37,4 @@ cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
 mas "Amphetamine", id: 937984704
+mas "BetterSnapTool", id: 417375580

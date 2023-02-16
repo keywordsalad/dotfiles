@@ -161,7 +161,7 @@ ZSH_CUSTOM="$HOME/.zsh-custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history-substring-search git timer fzf)
+plugins=(history-substring-search git timer keychain gpg-agent)
 
 # This is disabled because handle_completion_insecurities() is hella slow
 ZSH_DISABLE_COMPFIX=true

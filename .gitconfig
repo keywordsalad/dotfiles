@@ -70,3 +70,5 @@
 
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[push]
+	autoSetupRemote = true
